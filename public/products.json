@@ -1,0 +1,51 @@
+[
+    {   
+        "id": 1,
+        "name": "Samsung Galaxy S21 Ultra 5G", 
+        "price": "₦525,000", 
+        "image": "/Images/ac.jpg" 
+    },
+    {       
+        "id": 2,
+        "name": "iPhone 13 Pro Max", 
+        "price": "₦700,000", 
+        "image": "/Images/frying.jpg" 
+    },
+    { 
+        "id": 3,
+        "name": "Google Pixel 6 Pro", 
+        "price": "₦600,000", 
+        "image": "/Images/headphone.jpg" 
+    },
+    { 
+        "id": 4,
+        "name": "OnePlus 9 Pro",
+        "price": "₦500,000", 
+        "image": "Images/tv.jpg" 
+    },
+    {
+        "id": 5,
+        "name": "OnePlus 9 Pro",
+        "price": "₦500,000", 
+        "image": "Images/warmer.jpg" 
+    },
+    {
+        "id": 6,
+        "name": "OnePlus 9 Pro",
+        "price": "₦500,000", 
+        "image": "/Images/phone.jpg" 
+    },
+    {
+        "id": 7,
+        "name": "OnePlus 9 Pro",
+        "price": "₦500,000", 
+        "image": "Images/hp.jpg" 
+    },
+    {
+        "id": 8,
+        "name": "OnePlus 9 Pro",
+        "price": "₦500,000", 
+        "image": "Images/radio-2.jpg" 
+    }
+  ]
+  

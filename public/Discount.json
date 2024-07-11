@@ -1,0 +1,52 @@
+[
+    { 
+        "name": "Samsung Galaxy S21 Ultra 5G", 
+        "price": "₦525,000", 
+        "discount": "-25%",
+        "image": "/Images/phone.jpg"
+        
+    },
+    { 
+        "name": "iPhone 13 Pro Max", 
+        "price": "₦700,000", 
+        "image": "/Images/verve.png" ,
+        "discount": "-25%"
+    },
+    { 
+        "name": "Fridge", 
+        "price": "₦600,000", 
+        "image": "/Images/fridged.jpg" ,
+        "discount": "-25%"
+    },
+    { 
+        "name": "solar",
+         "price": "₦500,000", 
+         "image": "Images/solar.jpg" ,
+         "discount": "-25%"
+    },
+    {
+        "name": "warmer",
+         "price": "₦500,000", 
+         "image": "Images/warmer.jpg" ,
+         "discount": "-25%"
+    },
+    {
+        "name": "Hp Laptop",
+         "price": "₦500,000", 
+         "image": "Images/hp.jpg" ,
+         "discount": "-25%"
+    },
+    {
+        "name": "Frying Pan",
+         "price": "₦500,000", 
+         "image": "Images/frying.jpg",
+         "discount": "-25%" 
+    },
+    {
+        "name": "Radio",
+         "price": "₦500,000", 
+         "image": "Images/radio.jpg",
+         "discount": "-25%"
+    }
+  ]
+  
