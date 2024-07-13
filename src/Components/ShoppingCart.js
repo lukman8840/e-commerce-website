@@ -1,4 +1,3 @@
-// ShoppingCart.js
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { IoIosArrowRoundBack } from 'react-icons/io';
@@ -11,6 +10,7 @@ const ShoppingCart = () => {
   const navigate = useNavigate();
   const { cart, removeFromCart, addToCart } = useContext(CartContext);
 
+  console.log(cart)
   const handleHomeClick = (event) => {
     event.preventDefault();
     navigate('/');
@@ -18,26 +18,25 @@ const ShoppingCart = () => {
 
   const handleCheckout = (event) => {
     event.preventDefault();
-    navigate('/Checkout'); // Ensure the correct path
+    navigate('/Checkout');
   };
 
-  const convertPrice = (priceString) => {
-    return Number(priceString.replace(/[₦,]/g, ''));
-  };
 
+  
   const updateQuantity = (item, newQuantity) => {
     if (newQuantity > item.quantity) {
-      addToCart(item);
+      addToCart({ ...item, quantity: item.quantity + 1 }); // Ensure to update quantity in addToCart
+    } else if (newQuantity > 0) {
+      addToCart({ ...item, quantity: item.quantity - 1 }); // Ensure to update quantity in addToCart
     } else {
       removeFromCart(item);
     }
   };
 
   const Subtotal = cart.reduce(
-    (total, item) => total + convertPrice(item.price) * item.quantity,
+    (total, item) => total + item.price * item.quantity,
     0
   );
-
   const total = Subtotal;
 
   return (
@@ -52,7 +51,7 @@ const ShoppingCart = () => {
             <div className='item' key={index}>
               <img src={item.image} alt='product-image' />
               <div className='item-details'>
-                <h2>{item.name}</h2>
+                <h2>{item.title}</h2>
                 <button
                   className='btn'
                   onClick={() => updateQuantity(item, item.quantity - 1)}
@@ -66,7 +65,7 @@ const ShoppingCart = () => {
                 >
                   +
                 </button>
-                <p>{item.price}</p>
+                <p>${item.price}</p>
                 <MdDelete
                   className='delete-icon'
                   onClick={() => removeFromCart(item)}
@@ -82,11 +81,11 @@ const ShoppingCart = () => {
           </div>
           <div className='summary-details'>
             <p className='sub-total'>Subtotal</p>
-            <p className='sub-total'>₦{Subtotal}</p>
+            <p className='sub-total'>${Subtotal.toFixed(2)}</p> 
           </div>
           <div className='summary-details'>
             <p>Total</p>
-            <p>₦{total}</p>
+            <p>${total.toFixed(2)}</p> 
           </div>
           <button className='checkout-btn' onClick={handleCheckout}>
             Proceed to Checkout

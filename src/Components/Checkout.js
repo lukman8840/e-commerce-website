@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './Checkout.css'; 
 import Footer from './Footer';
 import { IoIosArrowRoundBack } from "react-icons/io";
 import { useNavigate } from 'react-router-dom';
+import { CartContext } from './CartContext';
 
 const Checkout = () => {
   const navigate = useNavigate();
+  const { cart } = useContext(CartContext);
+
   const [addressSelected, setAddressSelected] = useState(false);
   const [paymentSelected, setPaymentSelected] = useState(false);
 
@@ -35,6 +38,13 @@ const Checkout = () => {
   const handleShippingSelection = () => {
     setAddressSelected(true)
   }
+
+  const Subtotal = cart.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0
+  );
+  const total = Subtotal;
+  const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
 
   return (
     <div className='checkout-container'>
@@ -80,15 +90,15 @@ const Checkout = () => {
         <div className='summary'>
           <div className='smr'>
             <h2>Summary</h2>
-            <p>2 Items</p>
+            <p>Total items: {totalItems}</p>
           </div>
           <div className='summary-details'>
             <p className='sub-total'>Subtotal</p>
-            <p className='sub-total'>₦975,000</p>
+            <p className='sub-total'>${Subtotal}</p>
           </div>
           <div className='summary-details'>
             <p>Total</p>
-            <p>₦975,000</p>
+            <p>${total}</p>
           </div>
           <button className='checkout-btn' onClick={handlePayClick}>Proceed to Pay</button>
           <p className='pay'>Pay with</p>

@@ -1,6 +1,7 @@
 
 .hero-section{
     display: flex;
+    width: 1600px;
     justify-content: space-between;
 }
 
@@ -14,17 +15,18 @@
     margin-left: 20px;
 }
 .hero-section h1{
-    font-size: 80px;
+    font-size: 60px;
     text-align: justify;
 }
 .hero-section span{
     color: red;
     text-align: justify;
-    margin-top: 0px;
+    margin-top: 10px;
     display: block;
     font-size: 63px;
 }
 .hero-section p{
+    width: 800px;
     font-size: 20px;
     margin-top: 80px;
 }

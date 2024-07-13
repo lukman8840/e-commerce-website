@@ -16,6 +16,8 @@
     background: #f9f9f9;
     padding: 20px;
     width: 100%;
+    justify-content: center;
+    align-items: center;
     height: 100vh;
     max-width: 1200px;
     border-radius: 8px;
@@ -61,7 +63,7 @@ label {
     border: 1px solid black;
     padding: 20px;
     height: 340px;
-    width: 450px;
+    max-width: 100%
 }
 
 .smr {

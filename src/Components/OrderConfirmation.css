@@ -2,21 +2,16 @@ body {
     height: fit-content;
     width: 100%;
     margin: 0;
-    display: flex; /* Add this to enable flexbox */
-    align-items: center; /* Center vertically */
+    align-items: center; 
     background: #f9f9f9;
 }
 
 .confirmation-container {
     display: flex;
-    flex-direction: column; /* Stack items vertically */
-    justify-content: center; /* Center content horizontally */
-    align-items: center; /* Center content vertically */
-    border-radius: 100%;
-    width: 100%;
-    padding: 20px; /* Increased padding for better spacing */
-    border: 1px solid black;
-    background: #fff; /* Optional: add a background color */
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    padding: 20px;  
 }
 
 .confirmation-content {
@@ -57,26 +52,26 @@ p {
 
 @media (max-width: 600px) {
     .confirmation-container {
-      padding: 10px; /* Decreased padding for compact spacing */
+      padding: 10px; 
     }
   
     .checkmark-icon {
-      font-size: 80px; /* Smaller icon size for smaller screens */
-      margin-bottom: 10px; /* Reduced margin for closer spacing */
+      font-size: 80px; 
+      margin-bottom: 10px; 
     }
   
     h2 {
-      font-size: 20px; /* Smaller font size for headings */
+      font-size: 20px; 
     }
   
     p {
-      font-size: 16px; /* Smaller font size for paragraphs */
+      font-size: 16px; 
     }
   
     .home-btn {
-      padding: 12px 24px; /* Smaller button padding */
-      font-size: 14px; /* Smaller font size for button text */
-      margin-top: 15px; /* Reduced margin for closer spacing */
+      padding: 12px 24px; 
+      font-size: 14px; 
+      margin-top: 15px; 
     }
   }
   

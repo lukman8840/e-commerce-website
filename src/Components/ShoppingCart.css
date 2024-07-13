@@ -106,13 +106,6 @@ span{
   border-radius: 10px;
 }
 
-.summary {
-  border: 1px solid black;
-  padding: 20px;
-  height: 340px;
-  width: 400px;
-}
-
 .summary-details {
   display: flex;
   justify-content: space-between;
@@ -140,6 +133,7 @@ span{
   margin-left: 0;
   justify-content: center;
   align-items:flex-start;
+  width: 500px;
   
 }
 
