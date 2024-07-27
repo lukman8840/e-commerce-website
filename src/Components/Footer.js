@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaFacebookF, FaTwitter, FaInstagram } from 'react-icons/fa';
+import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa';
 import './Footer.css';
 
 const Footer = () => {
@@ -38,9 +38,10 @@ const Footer = () => {
       <div className="footer-column">
         <h4>Join Us On</h4>
         <div className="social-icons">
-          <FaFacebookF />
+          <FaFacebookF /> 
           <FaTwitter />
           <FaInstagram />
+          <FaLinkedin />
         </div>
       </div>
     </footer>

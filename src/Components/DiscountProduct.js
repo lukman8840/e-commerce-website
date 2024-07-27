@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './TopSellingProduct.css'; // Assuming you have a separate CSS file for styling
 
-const DiscountProduct = ({ category, addToCart }) => {
+const DiscountProduct = ({ category, addToCart , }) => {
   const [products, setProducts] = useState([]);
   const [addedToCart, setAddedToCart] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
@@ -27,12 +27,12 @@ const DiscountProduct = ({ category, addToCart }) => {
 
   const handleAddToCart = (product) => {
     addToCart(product); // Ensure addToCart is a function passed as prop
-    setAddedToCart((prevState) => ({
+    // Update the prop received from parent, not internal state
+    addedToCart((prevState) => ({
       ...prevState,
       [product.id]: true,
     }));
   };
-
   const nextPage = () => {
     setCurrentPage((prevPage) => prevPage + 1);
   };

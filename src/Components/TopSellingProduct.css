@@ -1,5 +1,5 @@
 .cards-container {
-    padding: 20px;
+    padding: 90px;
     text-align: center;
 }
 
@@ -11,10 +11,11 @@
 }
 
 .products-grid {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); 
     justify-content: center;
-    gap: 20px;
+    gap: 0px;
+    margin: 0px;
 }
 
 .product-card {
@@ -40,7 +41,7 @@
 
 .image-container {
     width: 100%;
-    height: 200px; /* Set a fixed height for image container */
+    height: 200px; 
     overflow: hidden;
     border-radius: 10px;
     position: relative;
@@ -118,11 +119,17 @@ button:hover {
 @media (max-width: 768px) {
     .products-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr); /* Two products per row */
-      gap: 20px; /* Gap between products */
+      grid-template-columns: repeat(2, 1fr); 
+      gap: 20px; 
     }
   
     .product-card {
-      width: auto; /* Allow product cards to adjust width based on grid layout */
+      height: 40vh;
+      width: 140px; /* Allow product cards to adjust width based on grid layout */
+    }
+    .discount-tag {
+      font-size: 10px;
+      width: 10px;
+      padding: 10px;
     }
   }

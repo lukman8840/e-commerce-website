@@ -1,0 +1,48 @@
+/* Cart.css */
+
+.cart-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh; /* Adjust as needed to ensure it's centered in the viewport */
+    text-align: center;
+  }
+  
+  .empty-cart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 70vh;
+    max-width: 1600px; /* Adjust the width as needed */
+    background-color: white; /* Set background color */
+    text-align: center;
+    padding: 20px; /* Add padding for spacing */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Apply box shadow */
+    border-radius: 10px; /* Optional: add rounded corners */
+  }
+  
+  .empty-cart-icon {
+    font-size: 100px; /* Adjust the size as needed */
+    margin-bottom: 20px;
+    color: #ff4500; /* Optional: change icon color */
+  }
+  
+  h1, h2 {
+    margin: 10px 0;
+  }
+  .home {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 40px; /* Adjust font size */
+    color: #007bff; /* Set link color */
+    text-decoration:none; 
+    cursor: pointer;
+  }
+  
+  .home svg {
+    margin-right: 8px; /* Add space between icon and text */
+  }
+  

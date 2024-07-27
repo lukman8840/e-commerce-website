@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import './App.css'; 
-import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
+import './App.css';
+import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
 import DiscountProduct from './Components/DiscountProduct';
 import Header from './Components/Header';
-import HeroSection from './Components/HeroSection';
 import TopSellingProducts from './Components/TopSellingProducts';
 import Footer from './Components/Footer';
 import ShoppingCart from './Components/ShoppingCart';
@@ -12,38 +11,66 @@ import CardInfo from './Components/CardInfo';
 import AddressForm from './Components/AddressForm';
 import OrderConfirmation from './Components/OrderConfirmation';
 import { CartProvider } from './Components/CartContext';
+import OtpPage from './Components/OtpPage';
+import ProtectedRoute from './Components/ProtectedRoute';
+import SignUpModal from './Components/SignUpModal';
+import { AuthProvider } from './Components/AuthContext';
 
 function App() {
-  const location = useLocation();
-  const isCartPage = location.pathname === '/cart';
-  const isCheckoutPage = location.pathname === '/Checkout';
-  const isCardInfoPage = location.pathname === '/CardInfo';
-  // const isAddressFormPage = location.pathname === '/AddressForm';
-  const isOrderConfirmationPage = location.pathname === '/OrderConfirmation';
+  const navigate = useNavigate();  
 
-  const [category, setCategory] = useState('all'); 
-  const [searchQuery, setSearchQuery] = useState('')
+
+  const [category, setCategory] = useState('all');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [showSignUpModal, setShowSignUpModal] = useState(false);  // Added useState for showSignUpModal
+
+  const handleCheckout = (event) => {
+    event.preventDefault();
+    const isAuthenticated = false;
+
+    if (!isAuthenticated) {
+      setShowSignUpModal(true);
+    } else {
+      navigate('/checkout');
+    }
+  };
+
+  const closeSignUpModal = () => {
+    setShowSignUpModal(false);
+  };
 
   return (
     <CartProvider>
       <div className="App">
-        {!isCheckoutPage && !isCardInfoPage && 
-          
-          !isOrderConfirmationPage &&
-          <Header setCategory={setCategory} setSearchQuery={setSearchQuery} />}
+        <Header setCategory={setCategory} setSearchQuery={setSearchQuery} />
         <Routes>
-          <Route path="/" element={<>
-            <HeroSection />
-            <TopSellingProducts category={category} searchQuery={searchQuery}/>
-            <DiscountProduct category={category} />
-          </>} />
-          <Route path="/cart" element={<ShoppingCart />} />
-          <Route path="/Checkout" element={<Checkout />} />
-          <Route path="/CardInfo" element={<CardInfo />} />
+          <Route path="/" element={
+            <>
+              <TopSellingProducts category={category} searchQuery={searchQuery} />
+              <DiscountProduct category={category} />
+            </>
+          } />
+          <Route path="/cart" element={<ShoppingCart handleCheckout={handleCheckout} />} />
+          <Route path="/checkout" 
+            element={
+              <ProtectedRoute>
+                <Checkout />
+              </ProtectedRoute>
+            } 
+          />
+          <Route path="/CardInfo" 
+            element={
+              <ProtectedRoute>
+                <CardInfo />
+              </ProtectedRoute>
+            } 
+          />
           <Route path="/AddressForm" element={<AddressForm />} />
           <Route path="/OrderConfirmation" element={<OrderConfirmation />} />
+          <Route path="/otp" element={<OtpPage />} />
         </Routes>
-        {!isCartPage && !isCheckoutPage && !isCardInfoPage && !isOrderConfirmationPage && <Footer />}
+        <Footer />
+        {showSignUpModal && <SignUpModal onClose={closeSignUpModal} />}
       </div>
     </CartProvider>
   );
@@ -52,7 +79,9 @@ function App() {
 function AppWithRouter() {
   return (
     <Router>
-      <App />
+      <AuthProvider>
+        <App />
+      </AuthProvider>
     </Router>
   );
 }

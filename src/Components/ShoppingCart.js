@@ -1,79 +1,72 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { IoIosArrowRoundBack } from 'react-icons/io';
-import { MdDelete } from 'react-icons/md';
 import './ShoppingCart.css';
-import Footer from './Footer';
 import { CartContext } from './CartContext';
+import EmptyCart from './EmptyCart';
+import SignUpModal from './SignUpModal'; // Import SignUpModal
 
 const ShoppingCart = () => {
   const navigate = useNavigate();
-  const { cart, removeFromCart, addToCart } = useContext(CartContext);
+  const { cart, removeFromCart, addToCart, decrementFromCart } = useContext(CartContext);
+  const [showSignUpModal, setShowSignUpModal] = useState(false);
 
-  console.log(cart)
-  const handleHomeClick = (event) => {
-    event.preventDefault();
-    navigate('/');
-  };
+  if (cart.length === 0) {
+    return <EmptyCart />;
+  }
 
   const handleCheckout = (event) => {
     event.preventDefault();
-    navigate('/Checkout');
+    const isAuthenticated = false; // Replace with your authentication check
+
+    if (!isAuthenticated) {
+      setShowSignUpModal(true); // Show the SignUpModal if not authenticated
+    } else {
+      navigate('/Checkout'); // Navigate to checkout page if authenticated
+    }
   };
 
+  const closeSignUpModal = () => {
+    setShowSignUpModal(false);
+  };
 
-  
   const updateQuantity = (item, newQuantity) => {
     if (newQuantity > item.quantity) {
-      addToCart({ ...item, quantity: item.quantity + 1 }); // Ensure to update quantity in addToCart
+      addToCart({ ...item, quantity: item.quantity + 1 });
     } else if (newQuantity > 0) {
-      addToCart({ ...item, quantity: item.quantity - 1 }); // Ensure to update quantity in addToCart
+      decrementFromCart({ ...item, quantity: item.quantity - 1 });
     } else {
       removeFromCart(item);
     }
   };
 
-  const Subtotal = cart.reduce(
-    (total, item) => total + item.price * item.quantity,
-    0
-  );
+  const Subtotal = cart.reduce((total, item) => total + item.price * item.quantity, 0);
   const total = Subtotal;
 
   return (
     <div className='shopping-cart'>
-      <a className='home' href='#!' onClick={handleHomeClick}>
-        <IoIosArrowRoundBack /> Home
-      </a>
       <h1>Shopping Cart</h1>
       <div className='content'>
         <div className='items-container'>
           {cart.map((item, index) => (
             <div className='item' key={index}>
-              <img src={item.image} alt='product-image' />
+              <img src={item.image} alt='product-image' className='product-image' />
               <div className='item-details'>
-                <h2>{item.title}</h2>
-                <button
-                  className='btn'
-                  onClick={() => updateQuantity(item, item.quantity - 1)}
-                >
-                  -
-                </button>
-                <span>{item.quantity}</span>
-                <button
-                  className='btn'
-                  onClick={() => updateQuantity(item, item.quantity + 1)}
-                >
-                  +
-                </button>
-                <p>${item.price}</p>
-                <MdDelete
-                  className='delete-icon'
-                  onClick={() => removeFromCart(item)}
-                />
+                <h2 className='item-title'>{item.title}</h2>
+                <div className='add-min'>
+                  <button className='btn' onClick={() => updateQuantity(item, item.quantity - 1)}>
+                    -
+                  </button>
+                  <span className='quantity'>{item.quantity}</span>
+                  <button className='btn' onClick={() => updateQuantity(item, item.quantity + 1)}>
+                    +
+                  </button>
+                </div>
+                <p className='price'>${item.price}</p>
               </div>
             </div>
           ))}
         </div>
+
         <div className='summary'>
           <div className='smr'>
             <h2>Summary</h2>
@@ -81,11 +74,11 @@ const ShoppingCart = () => {
           </div>
           <div className='summary-details'>
             <p className='sub-total'>Subtotal</p>
-            <p className='sub-total'>${Subtotal.toFixed(2)}</p> 
+            <p className='sub-total'>${Subtotal.toFixed(2)}</p>
           </div>
           <div className='summary-details'>
             <p>Total</p>
-            <p>${total.toFixed(2)}</p> 
+            <p>${total.toFixed(2)}</p>
           </div>
           <button className='checkout-btn' onClick={handleCheckout}>
             Proceed to Checkout
@@ -98,7 +91,9 @@ const ShoppingCart = () => {
           </div>
         </div>
       </div>
-      <Footer />
+      {showSignUpModal && (
+        <SignUpModal onClose={closeSignUpModal} />
+      )}
     </div>
   );
 };

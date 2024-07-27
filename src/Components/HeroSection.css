@@ -1,21 +1,22 @@
-
 .hero-section{
     display: flex;
-    width: 1600px;
+    max-width: 100%;
     justify-content: space-between;
 }
 
 .hero-text{
-    align-items: center;
     justify-content: center;
-    margin-top: 100px;
+    align-items: center;
+    margin-top: 10%;
     text-transform: capitalize;
     font-size: 8px;
+    width: 100%;
     text-align: justify;
     margin-left: 20px;
+    
 }
 .hero-section h1{
-    font-size: 60px;
+    font-size: 80px;
     text-align: justify;
 }
 .hero-section span{

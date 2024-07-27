@@ -1,11 +1,14 @@
 import React from 'react';
 import './OrderConfirmation.css';
 import { useNavigate } from 'react-router-dom';
+import { useCart } from './CartContext';
 
 const OrderConfirmation = () => {
     const navigate = useNavigate();
+    const { setCart } = useCart();
 
     const handleBack = () => {
+        setCart([])
         navigate('/')
     }
 

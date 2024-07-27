@@ -1,73 +1,72 @@
+/* Ensures the form container is centered in the viewport */
 .address-form-container {
-   display: flex;
-   background-color: #fff;
-   width: 100%;
-   align-items: center;
-   justify-content: center;
-   flex-direction: column;
-    padding: 30px;
-    border-radius: 8px;
+  display: flex;
+  background-color: #fff;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 100%; /* Ensures it takes full width of its parent */
+  max-width: 600px; /* Adjust as needed for the maximum width of the container */
+  height: 100vh;
+  margin: 0 auto; /* Centers the container horizontally */
 }
 
 .address-form-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    text-align: justify;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: fit-content;
+  width: 100%; /* Ensures header takes full width of container */
+  margin-bottom: 20px; /* Spacing between header and form */
 }
 
 .close-btn {
-    background: none;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
+  display: block;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
 }
 
 form {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  width: 100%; /* Ensures the form takes full width of the container */
 }
 
 .input-row {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: column; /* Stacks input fields vertically */
+  margin-bottom: 20px; /* Spacing between input rows */
 }
 
 .input-group {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    margin-right: 10px;
-}
-
-.input-group:last-child {
-    margin-right: 0;
+  margin-bottom: 15px; /* Spacing between input groups */
 }
 
 .input-group label {
-    margin-bottom: 5px;
-    font-weight: bold;
-    text-align: left;
+  display: block; /* Ensures label takes full width */
+  margin-bottom: 5px;
+  font-weight: bold;
 }
 
 .input-group input {
-    padding: 17px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+  width: 100%; /* Ensures input takes full width of the input-group */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
-.submit-btn, .back-btn {
-    width: 600px;
-    padding: 15px;
-    background: black;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    margin-top: 20px;
-}
-
-.submit-btn:hover {
-    background: #333;
+.submit-btn{
+  padding: 23px;
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
 }
