@@ -1,17 +1,15 @@
 /* Ensures the form container is centered in the viewport */
 .address-form-container {
-  display: flex;
   background-color: #fff;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  padding: 30px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   width: 100%; /* Ensures it takes full width of its parent */
-  max-width: 600px; /* Adjust as needed for the maximum width of the container */
-  height: 100vh;
-  margin: 0 auto; /* Centers the container horizontally */
+  max-width: 400px; /* Adjust as needed for the maximum width of the container */
+  height: 120vh;
+  margin: 0px auto; /* Centers the container horizontally */
 }
 
 .address-form-header {
@@ -21,7 +19,7 @@
   text-align: center;
   height: fit-content;
   width: 100%; /* Ensures header takes full width of container */
-  margin-bottom: 20px; /* Spacing between header and form */
+  margin-bottom: 10px; /* Spacing between header and form */
 }
 
 .close-btn {
@@ -39,9 +37,11 @@ form {
 }
 
 .input-row {
+  align-items: center;
+  justify-content: center;
   display: flex;
   flex-direction: column; /* Stacks input fields vertically */
-  margin-bottom: 20px; /* Spacing between input rows */
+  margin-bottom: 0px; /* Spacing between input rows */
 }
 
 .input-group {
@@ -55,6 +55,8 @@ form {
 }
 
 .input-group input {
+  justify-content: center;
+  align-items: center;
   width: 100%; /* Ensures input takes full width of the input-group */
   padding: 10px;
   border: 1px solid #ccc;

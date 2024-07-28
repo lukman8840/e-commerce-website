@@ -56,8 +56,8 @@ const ModalContent = styled.div`
   position: relative;
 
   @media (max-width: 768px){
-    width: 250px;
-    height: 200px;
+    width: 150px;
+    height: 300px;
   }
 `;
 
@@ -67,7 +67,7 @@ const Title = styled.h2`
   font-weight: bolder;
 
   @media (max-width: 768px){
-    font-size: 11px;
+    font-size: 20px;
     font-weight: bolder;
     color: lightblue;
   }
@@ -78,6 +78,7 @@ const ButtonContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   margin: 20px;
+
 `;
 
 const Button = styled.button`
@@ -91,6 +92,10 @@ const Button = styled.button`
 
   &:hover {
     background-color: ${(props) => (props.signIn ? '#006400' : 'black')};
+  }
+
+  @media (max-width: 768px){
+    width: 100%;
   }
 `;
 

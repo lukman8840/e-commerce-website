@@ -1,55 +1,31 @@
-import React, { useEffect, useState } from 'react';
-import './TopSellingProduct.css'; // Assuming you have a separate CSS file for styling
+import React, { useContext,  useState } from 'react'; // Import useContext and other necessary hooks
+import './TopSellingProduct.css'; 
+import { CartContext } from './CartContext';
+import { ProductContext } from './ProductContext';
 
-const DiscountProduct = ({ category, addToCart , }) => {
-  const [products, setProducts] = useState([]);
-  const [addedToCart, setAddedToCart] = useState({});
-  const [currentPage, setCurrentPage] = useState(1);
-  const [productsPerPage] = useState(8);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchDiscountProducts = async () => {
-      try {
-        const response = await fetch(
-          `https://fakestoreapi.com/products?_page=${currentPage}&_limit=${productsPerPage}`
-        );
-        const data = await response.json();
-        setProducts(data);
-        setLoading(false); // Update loading state after fetching data
-      } catch (error) {
-        console.error('Error Fetching products:', error);
-        setLoading(false); // Ensure loading state is updated in case of error
-      }
-    };
-    fetchDiscountProducts();
-  }, [category, currentPage, productsPerPage]);
-
+const DiscountProduct = ({ category }) => {
+  const { addToCart } = useContext(CartContext); // Use CartContext to access addToCart function
+  const { prevPage, nextPage, loading, products, currentPage } = useContext(ProductContext); // Use ProductContext to access product-related data and functions
+  const [addedToCart, setAddedToCart] = useState({}); // State to track added to cart status
+  
+  // Function to handle adding a product to the cart
   const handleAddToCart = (product) => {
-    addToCart(product); // Ensure addToCart is a function passed as prop
-    // Update the prop received from parent, not internal state
-    addedToCart((prevState) => ({
+    addToCart(product); // Add product to cart using context function
+    setAddedToCart((prevState) => ({
       ...prevState,
-      [product.id]: true,
+      [product.id]: true, // Update addedToCart state to indicate product is added to cart
     }));
   };
-  const nextPage = () => {
-    setCurrentPage((prevPage) => prevPage + 1);
-  };
-
-  const prevPage = () => {
-    setCurrentPage((prevPage) => prevPage - 1);
-  };
-
+  
   return (
     <div className='cards-container'>
       <h1>Discount Products</h1>
       {loading ? (
-        <p>Loading ...</p>
+        <p>Loading...</p>
       ) : (
         <div className='products-grid'>
-          {products.map((product, index) => (
-            <div key={index} className='product-card'>
+          {products.map((product) => (
+            <div key={product.id} className='product-card'>
               <div className='card'>
                 <div className='image-container'>
                   <img src={product.image} alt={product.title} />

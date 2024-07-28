@@ -1,5 +1,5 @@
 .cards-container {
-    padding: 90px;
+    padding: 10px;
     text-align: center;
 }
 
@@ -12,18 +12,18 @@
 
 .products-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); 
+    grid-template-columns: repeat(5, 1fr); 
     justify-content: center;
-    gap: 0px;
-    margin: 0px;
 }
 
 .product-card {
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 300px;
-    margin: 20px;
+    width:250px;
+    margin-right: 0px;
+    margin: 10px;
+   height: 300px;
 }
 
 .card {
@@ -58,7 +58,7 @@
 
 .card p {
     margin: 10px 0;
-    font-size: 18px;
+    
     text-align: justify;
     font-weight: bolder;
 }
@@ -70,25 +70,22 @@ button {
     padding: 15px 10px;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
-    margin-top: 10px;
     text-align: center;
     transition: background-color 0.3s ease;
 }
 
-button:hover {
-    background-color: rgb(88, 87, 87);
-}
+
 
 .discount-tag {
     position: absolute;
     top: 10px;
     right: 10px;
     background-color: red;
-    color: white;
-    padding: 15px 20px;
+    color: #fff;
+    font-weight: bolder;
+    font-size: 13px;
+    padding: 5px 10px;
     border-radius: 35px 0px 0px 0px;
-    font-size: 14px;
 }
 .pagination {
     margin-top: 20px;
@@ -98,7 +95,6 @@ button:hover {
   .pagination button {
     padding: 8px 16px;
     margin: 0 5px;
-    font-size: 14px;
     cursor: pointer;
     background-color: #f0f0f0;
     border: 1px solid #ccc;
@@ -117,18 +113,20 @@ button:hover {
   
 
 @media (max-width: 768px) {
+ 
     .products-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr); 
-      gap: 20px; 
+      gap: 0px;
+      margin: 0px; 
     }
   
     .product-card {
-      height: 40vh;
-      width: 140px; /* Allow product cards to adjust width based on grid layout */
+      gap: 10px;
+      height: fit-content;
+      width: 180px; /* Allow product cards to adjust width based on grid layout */
     }
     .discount-tag {
-      font-size: 10px;
       width: 10px;
       padding: 10px;
     }

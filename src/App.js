@@ -15,6 +15,7 @@ import OtpPage from './Components/OtpPage';
 import ProtectedRoute from './Components/ProtectedRoute';
 import SignUpModal from './Components/SignUpModal';
 import { AuthProvider } from './Components/AuthContext';
+import {  ProductProvider} from './Components/ProductContext';
 
 function App() {
   const navigate = useNavigate();  
@@ -80,7 +81,9 @@ function AppWithRouter() {
   return (
     <Router>
       <AuthProvider>
+        <ProductProvider>
         <App />
+        </ProductProvider>
       </AuthProvider>
     </Router>
   );

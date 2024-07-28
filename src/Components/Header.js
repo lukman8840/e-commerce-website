@@ -1,10 +1,11 @@
-import React, { useContext, useState } from 'react'; 
+import React, { useState, useContext } from 'react'; 
 import { useNavigate } from 'react-router-dom'; 
 import './Header.css'; 
 import { FaBars } from "react-icons/fa"; 
 import { CartContext } from './CartContext'; 
 import SignUpForm from './SignUpForm';
 import StateSelection from './StateSelection';
+import { ProductContext } from './ProductContext';
 
 const Header = ({ setCategory, setSearchQuery }) => {
   const navigate = useNavigate(); 
@@ -12,30 +13,32 @@ const Header = ({ setCategory, setSearchQuery }) => {
 
   const [searchInput, setSearchInput] = useState(''); 
   const [showSignUpForm, setShowSignUpForm] = useState(false);
-  const [showAddressForm, setShowAddressForm] = useState(false)
+  const [showAddressForm, setShowAddressForm] = useState(false);
+  const [isNavOpen, setIsNavOpen] = useState(false); 
+  const { handleFilter } = useContext(ProductContext);
 
   const handleCartClick = () => {
-    navigate('/cart'); // Navigate to cart page regardless of the cart's content
+    navigate('/cart'); 
   };
 
   const handleHomeClick = () => {
     navigate('/')
   }
 
-  const handleCategoryClick = (category) => {
-    setCategory(category); 
-  };
-
   const handleSearchInput = (e) => {
     setSearchInput(e.target.value); 
   };
 
   const handleCloseSignUpForm = () => {
-    setShowSignUpForm(false)
+    setShowSignUpForm(false);
   }
 
   const handleCloseAddressForm = () => {
     setShowAddressForm(false);
+  }
+
+  const toggleNav = () => {
+    setIsNavOpen(!isNavOpen); // Toggle nav visibility
   }
 
   return (
@@ -45,6 +48,7 @@ const Header = ({ setCategory, setSearchQuery }) => {
           Flexmart
           <i className="fas fa-shopping-cart"></i> 
         </div>
+
         <div className='search-container'>
           <i className="fas fa-search"></i> 
           <input 
@@ -60,19 +64,21 @@ const Header = ({ setCategory, setSearchQuery }) => {
           )}
           <i className="fas fa-shopping-cart"></i>
         </button>
+        <button className='menu-button' onClick={toggleNav}>
+        <FaBars className='nav-icon' />
+        </button>
       </header>
-      <nav>
+      <nav className={isNavOpen ? 'nav-open' : 'nav-closed'}>
         <ul className='nav-list'>
           <li>
-            <button className='nav-button' onClick={() => { console.log('All Categories clicked'); setCategory('all'); }}>
+            <button className='nav-button' onClick={() => handleFilter('All Categories clicked')}>
               All Categories
-              <FaBars className='nav-icon' /> 
             </button>
           </li>
-          <li><button className='nav-button' onClick={() => handleCategoryClick('jewelery')}>Jewelery</button></li>
-          <li><button className='nav-button' onClick={() => handleCategoryClick('electronics')}>Electronics</button></li>
-          <li><button className='nav-button' onClick={() => handleCategoryClick("men's clothing")}>Men's Clothing</button></li>
-          <li><button className='nav-button' onClick={() => handleCategoryClick("women's clothing")}>Women's Clothing</button></li>
+          <li><button className='nav-button' onClick={() => handleFilter('jewelery')}>Jewelery</button></li>
+          <li><button className='nav-button' onClick={() => handleFilter('electronics')}>Electronics</button></li>
+          <li><button className='nav-button' onClick={() => handleFilter("men's clothing")}>Men's Clothing</button></li>
+          <li><button className='nav-button' onClick={() => handleFilter("women's clothing")}>Women's Clothing</button></li>
         </ul>
       </nav>
       {showSignUpForm && <SignUpForm onClose={handleCloseSignUpForm} />}
@@ -81,4 +87,4 @@ const Header = ({ setCategory, setSearchQuery }) => {
   );
 };
 
-export default Header; 
+export default Header;

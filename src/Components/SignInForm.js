@@ -3,8 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { AuthContext } from './AuthContext';
 
-
-
 const SignInForm = ({ onClose }) => {
   const {login} = useContext(AuthContext)
   const [formData, setFormData] = useState({
@@ -25,7 +23,7 @@ const SignInForm = ({ onClose }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (formData.password.length < 8) {
+    if (formData.password.length < 6) {
       setError('Password must be greater than 8 characters');
       return;
     }
@@ -85,7 +83,7 @@ const FormContainer = styled.div`
   padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  width: 450px;
+  width: 400px;
   max-width: 100%;
 
   @media (max-width: 768px){
@@ -104,7 +102,7 @@ const CloseButton = styled.button`
   right: -10px;
   background: black;
   border: none;
-  font-size: 1.5rem;
+  font-size: 0.5rem;
   cursor: pointer;
 `;
 
@@ -123,8 +121,8 @@ const Asterisk = styled.span`
 `;
 
 const Input = styled.input`
-  width: 85%;
-  padding: 15px;
+  width: 100%;
+  padding: 10px;
   margin-bottom: 1rem;
   margin-right: 10px;
   border: 1px solid black;
@@ -163,6 +161,6 @@ const CenteredButton = styled.button`
   cursor: pointer;
 
   &:hover {
-    background: #0056b3;
+    background: #333;
   }
 `;

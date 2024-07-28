@@ -1,45 +1,14 @@
-import React, { useContext, useEffect, useState } from 'react'; // Import necessary hooks and React library
+import React, { useContext, useState } from 'react'; // Import necessary hooks and React library
 import './TopSellingProduct.css'; // Import CSS for styling
 import { CartContext } from './CartContext'; // Import CartContext for managing cart state
+import { ProductContext } from './ProductContext';
 
 // TopSellingProducts component definition
 const TopSellingProducts = ({ category, searchQuery }) => {
-  const [products, setProducts] = useState([]); // State to store fetched products
-  const [addedToCart, setAddedToCart] = useState({}); // State to track added to cart status
   const { addToCart } = useContext(CartContext); // Use CartContext to access addToCart function
-
-  const [currentPage, setCurrentPage] = useState(1); // State to track current page number
-  const [productsPerPage] = useState(8); // State to define number of products per page
-  const [loading, setLoading] = useState(true); // State to track loading status
-
-  // useEffect hook to fetch products when category, currentPage, or productsPerPage changes
-  useEffect(() => {
-    const fetchProducts = async () => {
-      setLoading(true); // Start loading state
-      try {
-        const response = await fetch(
-          `https://fakestoreapi.com/products?_page=${currentPage}&_limit=${productsPerPage}`
-        ); // Fetch products from API
-        const data = await response.json(); // Parse the response as JSON
-
-        let filteredProducts = data; // Initialize filteredProducts with fetched data
-
-        // Filter products based on category if category is not 'all'
-        if (category !== 'all') {
-          filteredProducts = data.filter((product) => product.category === category);
-        }
-
-        setProducts(filteredProducts.slice(0, 30)); // Set products state with filtered data, limited to 30 items
-      } catch (error) {
-        console.error('Error fetching products:', error); // Log any errors
-      } finally {
-        setLoading(false); // Update loading state after fetching data
-      }
-    };
-
-    fetchProducts(); // Call fetchProducts function
-  }, [category, currentPage, productsPerPage, searchQuery]); // Dependency array
-
+  const { prevPage, nextPage, loading, products, currentPage } = useContext(ProductContext); // Use CartContext to access addToCart function
+  const [addedToCart, setAddedToCart] = useState({}); // State to track added to cart status
+  
   // Function to handle adding a product to the cart
   const handleAddToCart = (product) => {
     addToCart(product); // Add product to cart using context function
@@ -49,17 +18,7 @@ const TopSellingProducts = ({ category, searchQuery }) => {
     }));
     
   };
-
-  // Function to go to the next page
-  const nextPage = () => {
-    setCurrentPage((prevPage) => prevPage + 1); // Increment currentPage state
-  };
-
-  // Function to go to the previous page
-  const prevPage = () => {
-    setCurrentPage((prevPage) => prevPage - 1); // Decrement currentPage state
-  };
-
+  
   return (
     <div className='cards-container'>
       <h1>Top Selling Products</h1>

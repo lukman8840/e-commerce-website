@@ -12,12 +12,6 @@ const AddressForm = () => {
         navigate('/'); // Navigate to home or another route
     };
 
-    // Function to handle back button click
-    const handleBack = (event) => {
-        event.preventDefault(); // Prevent the default behavior of the event
-        window.history.back(); // Go back in browser history
-    };
-    
     // Function to handle form submission
     const handleSubmit = (event) => {
         event.preventDefault(); // Prevent the default form submission
@@ -32,16 +26,16 @@ const AddressForm = () => {
         const city = form['city'].value;
         const state = form['state'].value;
 
-        // Check if any field is empty
         if (!firstName || !lastName || !email || !phoneNumber || !homeAddress || !city || !state) {
             alert('Please fill all required fields'); // Alert the user to fill all required fields
             return; // Exit the function if any field is empty
         }
-
-        // Navigate to the Checkout page
         navigate('/Checkout');
     };
 
+    const handleBack = () => {
+        navigate('/checkout')
+    }
     return (
         <div className="address-form-container">
             <div className='container'>
@@ -89,12 +83,11 @@ const AddressForm = () => {
                         <input type="text" id="state" name="state" required />
                     </div>
 
-                    <button type="submit" className="submit-btn">Submit</button>
-                    {/* <button onClick={handleBack} className="back-btn">Back</button> */}
+                    <button type="submit" className="submit-btn" onClick={handleBack}>Submit</button>
                 </form>
             </div>
         </div>
     );
 };
 
-export default AddressForm; // Export the AddressForm component as the default export
+export default AddressForm; 

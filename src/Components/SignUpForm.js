@@ -177,7 +177,7 @@ const Form = styled.form`
 
 
   @media (max-width: 768px){
-    width: 300px;
+    width: 250px;
   }
 `;
 
